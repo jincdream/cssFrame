@@ -1,0 +1,33 @@
+/*ie下定义g-d的固定宽度*/
+.grids{
+	display:block;
+}
+/*height需要视情况改变*/
+.grids div{
+	height:30px;
+}
+.mg-b-h{
+	margin-bottom: -30px;
+}
+/*固定宽度为200进行示例*/
+.g-d{
+	width:200px;
+	float:left;
+}
+/*左一列定宽*/
+.mg-l-2{
+	margin-left: 200px;
+}
+/*左两列定宽*/
+/* margin-left = width*n */
+.mg-l-4{
+	margin-left: 400px;
+}
+/*左右定宽,中间自动补丁*/
+.mg-r-2{
+	margin-right: 200px;
+}
+
+.fr{
+	float: right;
+}
