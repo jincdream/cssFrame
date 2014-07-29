@@ -1,0 +1,10 @@
+.ie{
+  position:absolute;
+  top:50%;
+  left:50%;
+}
+.ie .center{
+  position:relative;
+  top:-50%;
+  left:-50%;
+}
