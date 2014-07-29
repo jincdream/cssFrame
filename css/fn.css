@@ -1,0 +1,23 @@
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clear:after,.clear-li:after{
+	display:block;
+	clear:both;
+	visibility:hidden;
+	height:0;
+	overflow:hidden;
+	content:".";
+}
+.clear,.clear-li{
+	zoom:1;
+} 
+/*网格*/
+.grids{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:flex;
+}
