@@ -1,15 +1,11 @@
 var fs = require('fs');
 var $ = require('jQuery');
-function h(fn) {
-    return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'
-}
 
-fs.readFile('./layout.css','utf8',function(err,data){
+fs.readFile('../css/layout.css','utf8',function(err,data){
   if(err)throw err;
   var css = data.replace(/[\t\r\n]/g,'');
   var guDing = /\.g\-d\{(.+)\}\.+?/.exec(css)[1].match(/(\d+?)px/);
   var width = guDing[1];
-
 
   fs.readFile('../html/layout.html','utf8',function(err,data){
     var html = data.replace(/[\t\r\n]/g,'').replace(/\<\!\-\-(.*?)\-\-\>/g,'');
@@ -38,47 +34,8 @@ fs.readFile('./layout.css','utf8',function(err,data){
       });
     });
     fs.writeFile('../css/ie/layout.css',cssText,function(err){
-      if(err)console.log(err);
+      if(err)throw err;
       console.log('ok');
     });
   });
 });
-// try{
-// 	str="<p>abcdefg</p><p>abcdefghijkl</p>";
-//
-// 	re1=str.match(/<p>[\W\w]+?<\/p>/ig);
-// 	console.log("非贪婪模式:\r\n\r\n１："+re1[0]+"\r\n２："+re1[1]);
-//
-// 	re1=str.match(/<p>[\W\w]+<\/p>/ig);
-// 	console.log("贪婪模式:\r\n\r\n"+re1);
-//
-// 	re1=str.match(/<p>(.+?)<\/p>/i);
-// 	console.log("非贪婪模式，且不要标记:\r\n\r\n１："+re1[1]);
-//
-// 	re1=str.match(/<p>(.+)<\/p>/i);
-// 	console.log("贪婪模式，且不要标记:\r\n\r\n"+re1[1]);
-// }catch(e){
-// 	console.log(e.description)
-// }
-
-//
-// var body = /<body>(.*?)<\/body>/g.exec(html)[1];
-// var gReg = /<div\s?\w+(grids)+.*?>.+?(\<\/div\>)/g;
-
-// function getGrids(){
-//   var ln = html.match(gReg).length;
-//   var g = body.match(gReg);
-//   var grids = [];
-//   for(var i=0;i<ln;i++){
-//     grids[i] = g.match(//);
-//   }
-//   return grids;
-// }
-// var n = self.find('.g-d').length;
-// if(!!self.find('.auto-left').length){
-//   console.log('.auto-left{margin-right:'+width*n+';}');
-// }else if(!!self.find('.auto-right').length){
-//   console.log('.auto-right{margin-left:'+width*n+';}');
-// }else if(!!self.find('.auto-mid').length){
-//   console.log('.auto-mid{margin-left:'+width*n+';}');
-// }
