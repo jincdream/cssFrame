@@ -2,32 +2,35 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>JS Bin</title>
+	<title>C-Nij</title>
 	<link rel="stylesheet" href="../css/common.css">
 	<link rel="stylesheet" href="../css/fn.css">
-	<link rel="stylesheet" href="../css/layout.css">
-	<!--[if lt IE 10]>
-		<link rel="stylesheet" href="../css/ie/layout.css">
-	![endif]-->
+	<link rel="stylesheet" href="../css/animation.css">
+	<style>
+		div{
+			width:150px;
+			height:150px;
+			background:rgba(10%,50%,90%,.5);
+			margin:5px 0;
+			position:relative;
+			*background:blue;
+		}
+	</style>
 </head>
 <body>
-	<!--/*固定宽度为200进行示例*/-->
-	<!--/*左一列定宽*/-->
-	<div class="grids">
-		<div class="g-d">固定200</div>
-		<div class="g-a mg-l-2">自动定宽</div>
+	<div>
+		<div class='ani-move'></div>
 	</div>
-	<!--/*左两列定宽*/-->
-	<div class="grids">
-		<div class="g-d">固定200</div>
-		<div class="g-d">固定200</div>
-		<div class="g-a mg-l-4">自动定宽</div>
+	<div>
+		<div class='ani-move'></div>
 	</div>
-	<!--/*左右定宽,中间自动补丁*/-->
-	<div class="grids">
-		<div class="g-d">固定200</div>
-		<div class="g-a mg-l-2 mg-r-2 mg-b-h">自动定宽</div>
-		<div class="g-d fr">固定200</div>
+	<div>
+		<div class='ani-move'></div>
 	</div>
+	<!--[if lt IE 10]>
+		<script src="../js/jq.js"></script>
+		<script>console.log($)</script>
+		<script src="../js/test.js"></script>
+	<![endif]-->
 </body>
 </html>
