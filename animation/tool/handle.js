@@ -9,7 +9,7 @@ var handle = function(name,o){
     var timer = o[name][0];
     var animate = o[name][1];
     var anm = [];
-    var code ='function '+nAmE+'(){';
+    var cN = nAmE+'Count';
 
     var reverse = [];
     var raw = [];
@@ -23,6 +23,8 @@ var handle = function(name,o){
     if(timer.delay)delay = timer.delay;
     if(timer.timing)timing = timer.timing=='linear'?',"linear"':',"swing"';
     if(timer.count)count = timer.count=='infinite'?'"inf"':timer.count;
+
+    var code ='var '+cN+'='+count+';function '+nAmE+'(){';
 
     for(var i=0;i<animate.length;i++){
         var width = 0;
@@ -58,7 +60,9 @@ var handle = function(name,o){
 
     if(!!count){
         anm = _reverse(animate);
-        code += 'var count='+count+';\rfunction inf(){';
+        code += '\rfunction inf(){';
+        code += 'if(!'+cN+')return;';
+        code += 'if(typeof '+cN+'=="number")'+cN+'--;';
     }
 
     for(var i=0;i<anm.length;i++){
@@ -81,7 +85,7 @@ var handle = function(name,o){
         }
         if(!!count && i==anm.length-1)fn = ',function(){inf()}';
         codeJ += '},'+time+timing+fn+')';
-        if(i!==anm.length-1)codeJ += '.\r';
+        if(i!==anm.length-1)codeJ += '.';
         code += codeJ;
     }
     if(!!count){
