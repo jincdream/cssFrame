@@ -19,13 +19,13 @@
 .ani-move{
     position:absolute;
     margin:0;
-    animation: ani-move 5s linear 2s infinite alternate;
+    animation: ani-move 5s linear 2s infinite;
     /* Firefox: */
-    -moz-animation: ani-move 5s linear 2s infinite alternate;
+    -moz-animation: ani-move 5s linear 2s infinite;
     /* Safari 和 Chrome: */
-    -webkit-animation: ani-move 5s linear 2s infinite alternate;
+    -webkit-animation: ani-move 5s linear 2s infinite;
     /* Opera: */
-    -o-animation: ani-move 5s linear 2s infinite alternate;
+    -o-animation: ani-move 5s linear 2s infinite;
 }
 .ani-move:hover{
     -webkit-animation-play-state: paused;
