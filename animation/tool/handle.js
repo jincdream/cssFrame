@@ -1,11 +1,15 @@
 var fs = require('fs');
 var obj = require('./object');
 var o = obj('../css/animation.css');
-for(var name in o){
+var codes = '';
+
+var handle = function(name,o){
     var element = '".' + name + '"';
+    var nAmE = name.replace(/\-(\S+?)/,function(a,s){return s.toUpperCase()});
     var timer = o[name][0];
     var animate = o[name][1];
-    var code ='';
+    var anm = [];
+    var code ='function '+nAmE+'(){';
 
     var reverse = [];
     var raw = [];
@@ -40,20 +44,29 @@ for(var name in o){
         }
     }
 
-    if(!!count){
-        code += 'var count='+count+';\r';
-        reverse = animate.reverse();
-        reverse.shift();
-        animate = raw.concat(reverse);
-        code += 'function inf(){';
+    function _reverse(ary){
+        var raw = [];
+        var raw2 = [];
+        var index = ary.length;
+        for(var i=0;i<ary.length;i++){
+            raw[--index] = ary[i];
+        }
+        raw.shift();
+        raw2 = ary.concat(raw);
+        return raw2;
     }
 
-    for(var i=0;i<animate.length;i++){
-        var ani = animate[i];
+    if(!!count){
+        anm = _reverse(animate);
+        code += 'var count='+count+';\rfunction inf(){';
+    }
+
+    for(var i=0;i<anm.length;i++){
+        var ani = anm[i];
         var time = timer.duration * ani.percent;
 
-        if(ln!==animate.length && i>ln-1){
-            time = timer.duration * animate[--ln].percent;
+        if(ln!==anm.length && i>ln-1){
+            time = timer.duration * anm[--ln].percent;
         }
 
         var n = Object.keys(ani);
@@ -66,15 +79,19 @@ for(var name in o){
             codeJ += n[k]+':'+ani[n[k]];
             if(k!==n.length-1)codeJ += ',';
         }
-        if(!!count && i==animate.length-1)fn = ',function(){inf()}';
+        if(!!count && i==anm.length-1)fn = ',function(){inf()}';
         codeJ += '},'+time+timing+fn+')';
-        if(i!==animate.length-1)codeJ += '.\r';
+        if(i!==anm.length-1)codeJ += '.\r';
         code += codeJ;
     }
     if(!!count){
-        code += '};setTimeout(function(){inf()},'+timer.delay+');'
+        code += '};setTimeout(function(){inf()},'+timer.delay+');}\r'
     }
-    fs.writeFile('../js/test.js',code,function(err){console.log(err)})
+    return code;
+}
+for(var name in o){
+    codes += handle(name,o);
     // console.log(animate);
     // console.log(timer);
 };
+fs.writeFile('../js/test.js',codes,function(err){console.log(err)})

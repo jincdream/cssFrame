@@ -32,3 +32,38 @@
     -o-animation-play-state: paused;
     animation-play-state: paused;
 }
+
+@-webkit-keyframes ani-j {
+    from {-webkit-transform:translate(100px,0);}
+    to {-webkit-transform:translate(500px,0);}
+}
+@-o-keyframes ani-j {
+    from {-o-transform:translate(100px,0);}
+    to {-o-transform:translate(500px,0);}
+}
+@-moz-keyframes ani-j {
+    from {-moz-transform:translate(100px,0);}
+    to {-moz-transform:translate(500px,0);}
+}
+@keyframes ani-j {
+    0% {transform:translate(100px,0);}
+    30% {transform:translate(300px,0);}
+    50% {transform:translate(200px,0);}
+    100% {transform:translate(500px,0);}
+}
+.ani-j{
+    position:absolute;
+    margin:0;
+    animation: ani-j 5s linear 2s infinite alternate;
+    /* Firefox: */
+    -moz-animation: ani-j 5s linear 2s infinite alternate;
+    /* Safari 和 Chrome: */
+    -webkit-animation: ani-j 5s linear 2s infinite alternate;
+    /* Opera: */
+    -o-animation: ani-j 5s linear 2s infinite alternate;
+}
+.ani-j:hover{
+    -webkit-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+}
